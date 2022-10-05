@@ -1,8 +1,9 @@
-numpy==1.22
-sklearn==0.22.2
+numpy==1.21.3
+scikit-learn==1.0.1
 fastprogress==0.2.3
 docopt==0.6.2
-transformers==3.0.2
+transformers==4.15.0
 pandas==0.24.2
 ekphrasis
 tqdm==4.31.1
+torch==1.10.1

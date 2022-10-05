@@ -59,8 +59,8 @@ class DataClass(Dataset):
             label_names = ['غضب', 'توقع', 'قر', 'خوف', 'سعادة', 'حب', 'تف', 'الياس', 'حزن', 'اند', 'ثقة']
 
         elif self.args['--lang'] == 'Spanish':
-            segment_a = "ira anticipaciÃ³n asco miedo alegrÃ­a amor optimismo pesimismo tristeza sorpresa or confianza?"
-            label_names = ['ira', 'anticip', 'asco', 'miedo', 'alegr', 'amor', 'optimismo',
+            segment_a = "ira anticipación asco miedo alegría amor optimismo pesimismo tristeza sorpresa or confianza?"
+            label_names = ['ira', 'anticipación', 'asco', 'miedo', 'alegría', 'amor', 'optimismo',
                            'pesim', 'tristeza', 'sorpresa', 'confianza']
 
         inputs, lengths, label_indices = [], [], []

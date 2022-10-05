@@ -219,4 +219,4 @@ class EvaluateOnTest(object):
             )
         str_stats.append(format_time(time.time() - start_time))
         headers = ['F1-Macro', 'F1-Micro', 'JS', 'Time']
-        print(' '.join('{}: {}'.format(*k) for k in zip(headers, str_stats)))
+        return {h: s for h, s in zip(headers, str_stats)}

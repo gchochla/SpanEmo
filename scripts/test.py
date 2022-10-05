@@ -10,6 +10,7 @@ Options:
     --test-batch-size=<int>           batch size [default: 32]
     --lang=<str>                      language choice [default: English]
     --test-path=<str>                 file path of the test set [default: ]
+    --device=<str>                    device [default: cpu]
 """
 from learner import EvaluateOnTest
 from model import SpanEmo
@@ -21,8 +22,8 @@ import numpy as np
 
 
 args = docopt(__doc__)
-device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
-if str(device) == 'cuda:0':
+device = torch.device(args["--device"])
+if str(device) != 'cpu':
     print("Currently using GPU: {}".format(device))
     np.random.seed(int(args['--seed']))
     torch.cuda.manual_seed_all(int(args['--seed']))
@@ -43,6 +44,7 @@ print('The number of Test batches: ', len(test_data_loader))
 #############################################################################
 model = SpanEmo(lang=args['--lang'])
 learn = EvaluateOnTest(model, test_data_loader, model_path='models/' + args['--model-path'])
-learn.predict(device=device)
-
+results = learn.predict(device=device)
+with open("results.txt", "a") as fp:
+    fp.writelines([f"{args['--lang']}, {str(results)}\n"])
 

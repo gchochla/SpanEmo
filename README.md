@@ -1,6 +1,23 @@
 # SpanEmo
 ***
 
+## Fork author's note:
+
+We have modified the scripts slightly to simply log results in `results.txt` to automatically get the results from multiple runs. We have otherwise made no changes to the training and testing regime. We run the scripts per language 10 times using our bash script:
+
+```bash
+chmod +x ./script.sh
+./script.sh -c 0 -r 10 -d /path/to/semeval/root
+```
+
+(in reality, we split each language into its own script to run them in parallel). We then compiled those in one CSV file per language and put these CSVs in `./lang-test-results`.
+
+*Disclaimer*: We have also changed the requirements slightly to work with Python 3.7.4 and Pytorch 1.10.1. For the reported averages and deviations, we exclude results 0 and 7 from the spanish CSV because the results were particularly subpar.
+
+<span style="font-size:x-small;">Original README ressumes:</span>
+
+---
+
 Source code for the paper ["SpanEmo: Casting Multi-label Emotion Classification as Span-prediction"](https://www.aclweb.org/anthology/2021.eacl-main.135.pdf) in EACL2021.
 
 <p align="center">

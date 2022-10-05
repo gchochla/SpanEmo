@@ -17,6 +17,8 @@ Options:
     --dev-path=<str>                  file path of the dev set [default: '']
     --train-path=<str>                file path of the train set [default: '']
     --alpha-loss=<float>              weight used to balance the loss [default: 0.2]
+    --filename=<str>                  where to save model [default: model]
+    --device=<str>                    device [default: cpu]
 """
 
 from learner import Trainer
@@ -31,8 +33,8 @@ import numpy as np
 
 
 args = docopt(__doc__)
-device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
-if str(device) == 'cuda:0':
+device = torch.device(args["--device"])
+if str(device) != 'cpu':
     print("Currently using GPU: {}".format(device))
     np.random.seed(int(args['--seed']))
     torch.cuda.manual_seed_all(int(args['--seed']))
@@ -44,8 +46,7 @@ else:
 # Save hyper-parameter values ---> config.json
 # Save model weights ---> filename.pt using current time
 #####################################################################
-now = datetime.datetime.now()
-filename = now.strftime("%Y-%m-%d-%H:%M:%S")
+filename = args["--filename"]
 fw = open('configs/' + filename + '.json', 'a')
 model_path = filename + '.pt'
 args['--checkpoint-path'] = model_path
